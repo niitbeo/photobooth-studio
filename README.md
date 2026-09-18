@@ -68,7 +68,7 @@ Mở trực tiếp bằng trình duyệt — **không cần cài đặt bất c�
 
 <table>
 <tr>
-<td width="50%"><img src="docs/02-mat-tien.jpg" alt="Mặt tiền gian"><br><div align="center"><b>Mặt tiền gian</b><br><sub>Bảng hiệu có logo trường, cột bóng bay, số "20" 3D</sub></div></td>
+<td width="50%"><img src="docs/02-mat-tien.jpg" alt="Mặt tiền gian"><br><div align="center"><b>Mặt tiền gian</b><br><sub>Bảng hiệu có logo trường, cột bóng bay, biểu tượng "20" 3D</sub></div></td>
 <td width="50%"><img src="docs/08-backdrop.jpg" alt="Backdrop banner 20 năm"><br><div align="center"><b>Backdrop banner 20 năm</b><br><sub>Chỉ dùng banner chính thức, không chèn thêm chữ</sub></div></td>
 </tr>
 <tr>
@@ -78,6 +78,9 @@ Mở trực tiếp bằng trình duyệt — **không cần cài đặt bất c�
 <tr>
 <td width="50%"><img src="docs/04-tu-camera.jpg" alt="Từ camera kiosk"><br><div align="center"><b>Góc nhìn từ camera kiosk</b><br><sub>Đúng khung hình máy sẽ chụp được</sub></div></td>
 <td width="50%"><img src="docs/05-quet-qr.jpg" alt="Quét QR nhận ảnh"><br><div align="center"><b>Quét QR nhận ảnh</b><br><sub>Màn hình kiosk hiện mã QR để tải ảnh về điện thoại</sub></div></td>
+</tr>
+<tr>
+<td width="50%" colspan="2" align="center"><img src="docs/07-so-20.jpg" alt="Số 20 kỷ niệm" width="60%"><br><b>Biểu tượng "20" check-in</b><br><sub>Dựng theo đúng banner: số đỏ viền xanh, ruy băng xanh, logo trường trong số 0, bệ 2 tầng có LED</sub></td>
 </tr>
 </table>
 

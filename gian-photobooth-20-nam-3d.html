@@ -167,12 +167,28 @@ const balGeo=new THREE.SphereGeometry(.13,18,14),balM=[M(RED,{roughness:.25}),M(
 [[-2.72,-1.72],[2.72,-1.78]].forEach(([x,z])=>{mesh(new THREE.CylinderGeometry(.2,.15,.4,18),M(WHITE),x,.2,z,booth);[[0,.75,0,.3],[-.12,.6,.08,.22],[.13,.62,-.06,.22],[0,1.05,0,.2]].forEach(([dx,y,dz,r])=>mesh(new THREE.SphereGeometry(r,14,12),M(0x3f8f4a,{roughness:.9}),x+dx,y,z+dz,booth))});
 const posts=[[1.75,2.45],[2.3,1.85],[2.85,1.25]];posts.forEach(([x,z])=>{const gm=M(GOLD,{metalness:.7,roughness:.3});mesh(new THREE.CylinderGeometry(.14,.16,.03,18),gm,x,.015,z,booth);mesh(new THREE.CylinderGeometry(.022,.022,.95,12),gm,x,.49,z,booth);mesh(new THREE.SphereGeometry(.04,12,10),gm,x,.98,z,booth)});
 for(let i=0;i<2;i++){const a=new THREE.Vector3(posts[i][0],.88,posts[i][1]),b=new THREE.Vector3(posts[i+1][0],.88,posts[i+1][1]);const r=mesh(new THREE.CylinderGeometry(.015,.015,a.distanceTo(b),8),M(RED),0,0,0,booth);r.position.copy(a).add(b).multiplyScalar(.5);r.lookAt(b);r.rotateX(Math.PI/2)}
-mesh(new THREE.BoxGeometry(1.9,.3,.7),M(RED),-2.05,.15,2.2,booth);
+mesh(new THREE.BoxGeometry(2.25,.1,.95),M(WHITE,{roughness:.4}),-2.05,.05,2.2,booth);
+[[2.2-.475],[2.2+.475]].forEach(([z])=>mesh(new THREE.BoxGeometry(2.27,.025,.02),LED,-2.05,.085,z,booth));
+[-2.05-1.125,-2.05+1.125].forEach(x=>mesh(new THREE.BoxGeometry(.02,.025,.97),LED,x,.085,2.2,booth));
+mesh(new THREE.BoxGeometry(1.95,.3,.7),M(RED,{roughness:.35}),-2.05,.25,2.2,booth);
+mesh(new THREE.BoxGeometry(1.97,.03,.72),M(GOLD,{metalness:.5,roughness:.3}),-2.05,.405,2.2,booth);
 const nT=canvasTex(1024,160,(c,w,h)=>{c.fillStyle='#d8232a';c.fillRect(0,0,w,h);c.fillStyle='#fff';c.textAlign='center';c.textBaseline='middle';c.font='bold 72px Segoe UI,sans-serif';c.fillText('NĂM THÀNH LẬP · 2006–2026',w/2,h/2+4)});
-mesh(new THREE.PlaneGeometry(1.86,.28),new THREE.MeshStandardMaterial({map:nT}),-2.05,.15,2.551,booth).castShadow=false;
+mesh(new THREE.PlaneGeometry(1.9,.27),new THREE.MeshStandardMaterial({map:nT}),-2.05,.25,2.551,booth).castShadow=false;
+const logoDiscT=useImg(canvasTex(256,256,(c,w,h)=>{c.clearRect(0,0,w,h);c.fillStyle='#fff';c.beginPath();c.arc(w/2,h/2,124,0,7);c.fill();c.strokeStyle='#f2b84b';c.lineWidth=8;c.beginPath();c.arc(w/2,h/2,120,0,7);c.stroke();logoAt(c,w/2,h/2,196)}));
 new THREE.FontLoader().load('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/fonts/helvetiker_bold.typeface.json',f=>{
-  const g=new THREE.TextGeometry('20',{font:f,size:1.15,height:.28,curveSegments:10,bevelEnabled:true,bevelThickness:.02,bevelSize:.015,bevelSegments:3});g.computeBoundingBox();const bb=g.boundingBox;
-  mesh(g,new THREE.MeshStandardMaterial({color:0xf7bd3a,metalness:.3,roughness:.3,emissive:0x8a5a00,emissiveIntensity:.55}),-2.05-(bb.max.x+bb.min.x)/2,.3,2.06,booth)});
+  const face=new THREE.MeshStandardMaterial({color:0xc4121a,roughness:.3,metalness:.05,emissive:0x3a0205,emissiveIntensity:.2});
+  const side=new THREE.MeshStandardMaterial({color:0x7cc0f5,roughness:.25,metalness:.2,emissive:0x1c5fa8,emissiveIntensity:.45});
+  const opt={font:f,size:1.2,height:.3,curveSegments:14,bevelEnabled:true,bevelThickness:.035,bevelSize:.025,bevelSegments:4};
+  let x=-2.05-.93;const y0=.42,z0=2.05;
+  ['2','0'].forEach(ch=>{const g=new THREE.TextGeometry(ch,opt);g.computeBoundingBox();const bb=g.boundingBox;
+    const m=mesh(g,[face,side],x-bb.min.x,y0-bb.min.y,z0,booth);
+    if(ch==='0'){const cx=x+(bb.max.x-bb.min.x)/2,cy=y0+(bb.max.y-bb.min.y)/2;
+      const d=mesh(new THREE.CircleGeometry(.215,40),new THREE.MeshStandardMaterial({map:logoDiscT,transparent:true,roughness:.5}),cx,cy,z0+.3+.045,booth);d.castShadow=false}
+    x+=(bb.max.x-bb.min.x)+.09});
+  const curve=new THREE.CatmullRomCurve3([[-3.1,.62,2.5],[-2.6,.56,2.56],[-2.0,.66,2.58],[-1.45,.9,2.54],[-1.0,1.28,2.44]].map(v=>new THREE.Vector3(...v)));
+  const rb=mesh(new THREE.TubeGeometry(curve,48,.095,12,false),new THREE.MeshStandardMaterial({color:0x4aa3e8,roughness:.25,metalness:.15,emissive:0x124a8a,emissiveIntensity:.4}),0,0,0,booth);
+  rb.position.z=2.5*(1-.22);rb.scale.z=.22;
+  const gl=new THREE.PointLight(0xcfe6ff,.7,2.6);gl.position.set(-2.05,.75,2.9);booth.add(gl)});
 
 // ---------- kiosk ----------
 const kiosk=new THREE.Group();scene.add(kiosk);kiosk.position.set(0,0,1.2);kiosk.rotation.y=Math.PI; // local +z = front → faces people (-z)
