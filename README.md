@@ -4,7 +4,7 @@
 
 ### Gian trưng bày 3D — Kỷ niệm 20 năm thành lập<br>Trường Đại học Kiến trúc Đà Nẵng
 
-**2006 — 2026** · *Kiến tạo không gian · Kiến tạo tương lai*
+**2006 — 2026** · *Kiến tạo giá trị – Dựng xây tương lai*
 
 <br>
 
@@ -37,7 +37,7 @@ quét QR nhận ảnh, cho tới khi máy in nhả tờ ảnh kỷ niệm và kh
 
 <table>
 <tr>
-<td width="25%" align="center"><h3>🏛️</h3><b>Gian 6 × 5 m</b><br><sub>Đủ backdrop, tường trưng bày, lối vào</sub></td>
+<td width="25%" align="center"><h3>🏛️</h3><b>Gian 6 × 5 m</b><br><sub>Banner 20 năm và logo chính thức của trường</sub></td>
 <td width="25%" align="center"><h3>🤖</h3><b>Kiosk mascot</b><br><sub>Theo đúng thiết kế đã duyệt</sub></td>
 <td width="25%" align="center"><h3>🖨️</h3><b>Máy in ảnh</b><br><sub>Nhả tờ ảnh 10 × 15 cm</sub></td>
 <td width="25%" align="center"><h3>🎬</h3><b>Hoạt cảnh 6 bước</b><br><sub>Tự chạy, xem được cách vận hành</sub></td>
@@ -58,9 +58,7 @@ Mở trực tiếp bằng trình duyệt — **không cần cài đặt bất c�
 
 > ⚠️ Lần mở đầu cần kết nối mạng để tải thư viện Three.js từ CDN.
 
-**Muốn gửi link cho sếp mở trên điện thoại?** Bật GitHub Pages:
-`Settings → Pages → Branch: main → / (root) → Save`
-Khoảng 1 phút sau gian hàng chạy tại 👉 `https://niitbeo.github.io/photobooth-studio/`
+**Xem online, mở được cả trên điện thoại** 👉 **https://niitbeo.github.io/photobooth-studio/**
 
 ---
 
@@ -68,16 +66,19 @@ Khoảng 1 phút sau gian hàng chạy tại 👉 `https://niitbeo.github.io/pho
 
 <table>
 <tr>
-<td width="50%"><img src="docs/02-mat-tien.jpg" alt="Mặt tiền gian"><br><div align="center"><b>Mặt tiền gian</b><br><sub>Bảng hiệu, cột bóng bay, số "20" 3D</sub></div></td>
-<td width="50%"><img src="docs/03-kiosk.jpg" alt="Kiosk mascot"><br><div align="center"><b>Kiosk mascot</b><br><sub>Màn hình đang đếm ngược 3-2-1</sub></div></td>
+<td width="50%"><img src="docs/02-mat-tien.jpg" alt="Mặt tiền gian"><br><div align="center"><b>Mặt tiền gian</b><br><sub>Bảng hiệu có logo trường, cột bóng bay, số "20" 3D</sub></div></td>
+<td width="50%"><img src="docs/08-backdrop.jpg" alt="Backdrop banner 20 năm"><br><div align="center"><b>Backdrop banner 20 năm</b><br><sub>Banner chính thức của trường in kín tường sau</sub></div></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/03-kiosk.jpg" alt="Kiosk mascot"><br><div align="center"><b>Kiosk mascot</b><br><sub>Màn hình chờ "Chạm để bắt đầu" có logo trường</sub></div></td>
+<td width="50%"><img src="docs/06-tu-tren.jpg" alt="Mặt bằng nhìn từ trên xuống"><br><div align="center"><b>Mặt bằng từ trên xuống</b><br><sub>Kiểm tra luồng di chuyển của khách</sub></div></td>
 </tr>
 <tr>
 <td width="50%"><img src="docs/04-tu-camera.jpg" alt="Từ camera kiosk"><br><div align="center"><b>Góc nhìn từ camera kiosk</b><br><sub>Đúng khung hình máy sẽ chụp được</sub></div></td>
 <td width="50%"><img src="docs/05-may-in.jpg" alt="Máy in ảnh"><br><div align="center"><b>Máy in nhả tờ ảnh</b><br><sub>Ảnh trườn ra khay, có khung 20 năm</sub></div></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/07-cam-anh.jpg" alt="Khách cầm ảnh ra về"><br><div align="center"><b>Khách cầm ảnh ra về</b><br><sub>Bước cuối của một lượt chụp</sub></div></td>
-<td width="50%"><img src="docs/06-tu-tren.jpg" alt="Mặt bằng nhìn từ trên xuống"><br><div align="center"><b>Mặt bằng từ trên xuống</b><br><sub>Kiểm tra luồng di chuyển của khách</sub></div></td>
+<td width="50%" colspan="2" align="center"><img src="docs/07-cam-anh.jpg" alt="Khách cầm ảnh ra về" width="50%"><br><b>Khách cầm ảnh ra về</b><br><sub>Bước cuối của một lượt chụp</sub></td>
 </tr>
 </table>
 
@@ -137,7 +138,7 @@ Bấm vào bước nào để **nhảy thẳng tới bước đó**, không ph�
 | Hạng mục | Kích thước đề xuất |
 |---|---|
 | **Kích thước gian** | 6,0 m × 5,0 m, cao 3,0 m |
-| **Backdrop chụp ảnh** | 3,6 m × 2,7 m, viền LED |
+| **Backdrop chụp ảnh** | 5,7 m × 2,8 m, in banner 20 năm chính thức, viền LED |
 | **Kiosk → vạch đứng chụp** | ≈ 2,0 m (2–4 người) · 2,5–3,0 m cho nhóm 5–6 người |
 | **Người → backdrop** | ≈ 0,7 – 1,1 m *(tránh đổ bóng lên backdrop)* |
 | **Camera trên đầu mascot** | cao ≈ 1,9 m, chúc xuống 3–5° |
@@ -152,9 +153,9 @@ Bấm vào bước nào để **nhảy thẳng tới bước đó**, không ph�
 
 ```
                     ┌──────────── TƯỜNG SAU (lam đỏ) ────────────┐
-   Tường trái       │        ┌──────────────────────┐            │   Tường phải
-  HÀNH TRÌNH        │  🎈    │  BACKDROP 3,6 × 2,7  │    🎈      │  ĐỒ ÁN SINH VIÊN
-    20 NĂM          │        └──────────────────────┘            │   + bục mô hình
+   Tường trái       │  ┌──────────────────────────────────────┐  │   Tường phải
+  HÀNH TRÌNH        │  │   BACKDROP BANNER 20 NĂM  5,7 × 2,8  │  │  ĐỒ ÁN SINH VIÊN
+    20 NĂM          │  └──────────────────────────────────────┘  │   + bục mô hình
  2006 → 2026        │             👤 👤 👤  ← vạch đứng          │
                     │                                            │
                     │   🖨 máy in      🤖 KIOSK      💡 đèn      │
@@ -173,7 +174,9 @@ photobooth-studio/
 ├── mo-phong-photobooth-3d.html     # Bản 3D rút gọn, chỉ cảnh chụp
 ├── mo-phong-photobooth.html        # Bản 2D: mặt cắt + mặt bằng
 ├── assets/
-│   └── kiosk-goc.png               # Ảnh thiết kế kiosk gốc (đã duyệt)
+│   ├── kiosk-goc.png               # Ảnh thiết kế kiosk gốc (đã duyệt)
+│   ├── banner-20-nam.png           # Banner 20 năm chính thức (nguồn: dau.edu.vn)
+│   └── logo-dau.png                # Logo trường (nguồn: dau.edu.vn)
 ├── docs/                           # Ảnh chụp dùng cho README
 └── README.md
 ```
@@ -214,11 +217,25 @@ Rồi mở `http://localhost:8765/`
 
 Các thông tin dưới đây là **ước lượng**, cần đối chiếu thực tế:
 
-- [ ] **Năm thành lập 2006** — cần xác nhận lại với nhà trường
 - [ ] **Kích thước gian 6 × 5 m** — cần đo theo mặt bằng thật của khu triển lãm
 - [ ] **Khoảng cách kiosk → người 2,0 m** — phụ thuộc tiêu cự ống kính máy ảnh sẽ dùng
 - [ ] **Thời gian in 12 giây/tấm** — theo máy in nhiệt phổ thông, cần kiểm tra theo máy thực tế
 - [ ] **Ảnh tư liệu trên tường hành trình** — hiện là ô trống, chờ ảnh thật từ nhà trường
+
+---
+
+## 🎨 Nhận diện thương hiệu
+
+Gian hàng dùng đúng bộ nhận diện kỷ niệm 20 năm của trường, lấy từ [dau.edu.vn](https://dau.edu.vn/):
+
+| Thành phần | Vị trí trong gian |
+|---|---|
+| **Banner "Chúc mừng kỷ niệm 20 năm thành lập trường"** | In kín tường sau, làm backdrop chụp ảnh |
+| **Logo trường** | Hai đầu bảng hiệu mặt tiền · màn hình chờ kiosk · tường hành trình · tờ ảnh in |
+| **6 mốc hành trình** | 2006 Thành lập · 2010 Khẳng định · 2015 Bứt phá · 2020 Đổi mới · 2023 Vươn xa · 2026 Tương lai |
+| **Khẩu hiệu** | Kiến tạo giá trị – Dựng xây tương lai |
+
+> Banner và logo là tài sản của Trường Đại học Kiến trúc Đà Nẵng, dùng ở đây cho mục đích trình bày phương án gian hàng của chính nhà trường.
 
 ---
 
@@ -236,6 +253,6 @@ rồi đưa vào công cụ tạo ảnh AI cùng ảnh kiosk gốc trong thư m�
 
 **Trường Đại học Kiến trúc Đà Nẵng**
 
-*Kiến tạo không gian · Kiến tạo tương lai*
+*Kiến tạo giá trị – Dựng xây tương lai*
 
 </div>
