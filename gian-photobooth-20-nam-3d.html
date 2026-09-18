@@ -118,20 +118,13 @@ const mark=mesh(new THREE.PlaneGeometry(2.2,.34),new THREE.MeshStandardMaterial(
 
 // ---------- backdrop (nền chụp ảnh) ----------
 function skyline(c,w,h,y0,col){c.strokeStyle=col;c.lineWidth=6;[[80,y0+120,150],[250,y0+20,200],[470,y0+160,130],[620,y0+60,170],[830,y0+140,140],[990,y0,190],[1200,y0+110,160]].forEach(([x,y,bw])=>{c.strokeRect(x,y,bw,h-y-60);for(let yy=y+40;yy<h-80;yy+=55){c.beginPath();c.moveTo(x+15,yy);c.lineTo(x+bw-15,yy);c.stroke()}})}
-const bdT=useImg(canvasTex(2048,1000,(c,w,h)=>{
-  c.fillStyle='#c4141b';c.fillRect(0,0,w,h);
-  const bh=Math.round(w*722/1941);
-  if(IMG.banner)c.drawImage(IMG.banner,0,0,w,bh);else{c.fillStyle='#fff';c.fillRect(0,0,w,bh)}
-  c.fillStyle='#f2b84b';c.fillRect(0,bh,w,8);
-  const my=bh+(h-bh)/2+6;
-  c.fillStyle='#fff';[150,w-150].forEach(x=>{c.beginPath();c.arc(x,my,96,0,7);c.fill();logoAt(c,x,my,156)});
-  c.fillStyle='#fff';c.textAlign='center';c.textBaseline='middle';c.font='bold 92px Segoe UI,sans-serif';c.fillText('PHOTOBOOTH LƯU DẤU KỶ NIỆM',w/2,my-34);
-  c.fillStyle='#ffe2a8';c.font='bold 46px Segoe UI,sans-serif';c.fillText('KIẾN TẠO GIÁ TRỊ  –  DỰNG XÂY TƯƠNG LAI',w/2,my+58);
+const bdT=useImg(canvasTex(2048,762,(c,w,h)=>{
+  if(IMG.banner)c.drawImage(IMG.banner,0,0,w,h);else{c.fillStyle='#fff';c.fillRect(0,0,w,h)}
 }));
 const bd=new THREE.Group();scene.add(bd);bd.position.set(0,0,-1.93);
-mesh(new THREE.BoxGeometry(5.7,2.78,.06),[M(0xcccccc),M(0xcccccc),M(0xcccccc),M(0xcccccc),new THREE.MeshStandardMaterial({map:bdT,roughness:.7}),M(0x999999)],0,1.47,0,bd);
-[[0,2.88],[0,.06]].forEach(([x,y])=>mesh(new THREE.BoxGeometry(5.78,.04,.08),LED,x,y,0,bd));
-[-2.87,2.87].forEach(x=>mesh(new THREE.BoxGeometry(.04,2.86,.08),LED,x,1.47,0,bd));
+mesh(new THREE.BoxGeometry(5.9,2.195,.06),[M(0xcccccc),M(0xcccccc),M(0xcccccc),M(0xcccccc),new THREE.MeshStandardMaterial({map:bdT,roughness:.7}),M(0x999999)],0,1.6,0,bd);
+[[0,2.72],[0,.48]].forEach(([x,y])=>mesh(new THREE.BoxGeometry(5.98,.04,.08),LED,x,y,0,bd));
+[-2.97,2.97].forEach(x=>mesh(new THREE.BoxGeometry(.04,2.28,.08),LED,x,1.6,0,bd));
 
 // ---------- gian triển lãm ----------
 const booth=new THREE.Group();scene.add(booth);

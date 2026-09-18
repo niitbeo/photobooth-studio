@@ -69,7 +69,7 @@ Mở trực tiếp bằng trình duyệt — **không cần cài đặt bất c�
 <table>
 <tr>
 <td width="50%"><img src="docs/02-mat-tien.jpg" alt="Mặt tiền gian"><br><div align="center"><b>Mặt tiền gian</b><br><sub>Bảng hiệu có logo trường, cột bóng bay, số "20" 3D</sub></div></td>
-<td width="50%"><img src="docs/08-backdrop.jpg" alt="Backdrop banner 20 năm"><br><div align="center"><b>Backdrop banner 20 năm</b><br><sub>Banner chính thức của trường in kín tường sau</sub></div></td>
+<td width="50%"><img src="docs/08-backdrop.jpg" alt="Backdrop banner 20 năm"><br><div align="center"><b>Backdrop banner 20 năm</b><br><sub>Chỉ dùng banner chính thức, không chèn thêm chữ</sub></div></td>
 </tr>
 <tr>
 <td width="50%"><img src="docs/03-kiosk.jpg" alt="Kiosk mascot"><br><div align="center"><b>Kiosk mascot</b><br><sub>Màn hình chờ "Chạm để bắt đầu" có logo trường</sub></div></td>
@@ -135,7 +135,7 @@ Bấm vào bước nào để **nhảy thẳng tới bước đó**, không ph�
 | Hạng mục | Kích thước đề xuất |
 |---|---|
 | **Kích thước gian** | 6,0 m × 5,0 m, cao 3,0 m |
-| **Backdrop chụp ảnh** | 5,7 m × 2,8 m, in banner 20 năm chính thức, viền LED |
+| **Backdrop chụp ảnh** | 5,9 m × 2,2 m, chỉ in banner 20 năm chính thức, viền LED |
 | **Kiosk → vạch đứng chụp** | ≈ 2,0 m (2–4 người) · 2,5–3,0 m cho nhóm 5–6 người |
 | **Người → backdrop** | ≈ 0,7 – 1,1 m *(tránh đổ bóng lên backdrop)* |
 | **Camera trên đầu mascot** | cao ≈ 1,9 m, chúc xuống 3–5° |
@@ -151,7 +151,7 @@ Bấm vào bước nào để **nhảy thẳng tới bước đó**, không ph�
 ```
                     ┌──────────── TƯỜNG SAU (lam đỏ) ────────────┐
    Tường trái       │  ┌──────────────────────────────────────┐  │   Tường phải
-  HÀNH TRÌNH        │  │   BACKDROP BANNER 20 NĂM  5,7 × 2,8  │  │  ĐỒ ÁN SINH VIÊN
+  HÀNH TRÌNH        │  │   BACKDROP BANNER 20 NĂM  5,9 × 2,2  │  │  ĐỒ ÁN SINH VIÊN
     20 NĂM          │  └──────────────────────────────────────┘  │   + bục mô hình
  2006 → 2026        │             👤 👤 👤  ← vạch đứng          │
                     │                                            │
@@ -227,8 +227,8 @@ Gian hàng dùng đúng bộ nhận diện kỷ niệm 20 năm của trường, 
 
 | Thành phần | Vị trí trong gian |
 |---|---|
-| **Banner "Chúc mừng kỷ niệm 20 năm thành lập trường"** | In kín tường sau, làm backdrop chụp ảnh |
-| **Logo trường** | Hai đầu bảng hiệu mặt tiền · màn hình chờ kiosk · tường hành trình · backdrop |
+| **Banner "Chúc mừng kỷ niệm 20 năm thành lập trường"** | In trên tường sau làm backdrop chụp ảnh, để nguyên bản, không chèn thêm chữ hay logo |
+| **Logo trường** | Hai đầu bảng hiệu mặt tiền · màn hình chờ kiosk · tường hành trình |
 | **6 mốc hành trình** | 2006 Thành lập · 2010 Khẳng định · 2015 Bứt phá · 2020 Đổi mới · 2023 Vươn xa · 2026 Tương lai |
 | **Khẩu hiệu** | Kiến tạo giá trị – Dựng xây tương lai |
 
