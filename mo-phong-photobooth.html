@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mô phỏng Photobooth</title>
+<style>
+  :root{--red:#d8232a;--red-d:#a3151b;--gold:#f2b84b;--blue:#2f7de1;--ink:#2a1a1c;--bg:#f6f1ee;--card:#fff;--mute:#7a6a6c}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,sans-serif;line-height:1.5}
+  main{max-width:1080px;margin:0 auto;padding:24px 16px 48px}
+  h1{font-size:26px;margin:0 0 4px}
+  h2{font-size:18px;margin:0 0 12px}
+  .sub{color:var(--mute);margin:0 0 20px}
+  .card{background:var(--card);border-radius:16px;padding:16px;margin-bottom:20px;box-shadow:0 2px 10px rgba(80,20,20,.08)}
+  svg{width:100%;height:auto;display:block}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+  .step{border:2px solid #eadfdc;border-radius:12px;padding:10px;font-size:14px;cursor:pointer;background:#fff;text-align:left;font-family:inherit;color:inherit}
+  .step b{display:block;color:var(--red);font-size:13px}
+  .step.on{border-color:var(--red);background:#fff2f2}
+  .bar{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap}
+  .btn{background:var(--red);color:#fff;border:0;border-radius:999px;padding:8px 18px;font-weight:600;cursor:pointer;font-family:inherit}
+  .cap{font-weight:600}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  td,th{padding:8px;border-bottom:1px solid #eee2df;text-align:left;vertical-align:top}
+  th{color:var(--mute);font-weight:600}
+  pre{white-space:pre-wrap;background:#2a1a1c;color:#ffe9d6;padding:14px;border-radius:12px;font-size:13px;margin:0 0 10px}
+  @media(max-width:640px){.steps{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<main>
+  <h1>Mô phỏng khách đứng chụp với Photobooth Mascot</h1>
+  <p class="sub">Trường Đại học Kiến trúc Đà Nẵng · Check-in nhận ảnh kỷ niệm</p>
+
+  <section class="card">
+    <h2>1. Cảnh chụp (nhìn ngang)</h2>
+    <svg viewBox="0 0 900 470" id="scene" role="img" aria-label="Mô phỏng cảnh chụp photobooth">
+      <defs>
+        <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef0f6"/><stop offset="1" stop-color="#dfe2ec"/></linearGradient>
+        <linearGradient id="pillar" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#f1e9e6"/></linearGradient>
+        <radialGradient id="glow"><stop offset="0" stop-color="#ffd27a" stop-opacity=".9"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
+      </defs>
+      <rect width="900" height="470" fill="url(#wall)"/>
+      <rect y="400" width="900" height="70" fill="#cfd3df"/>
+
+      <!-- Backdrop -->
+      <g>
+        <rect x="455" y="130" width="360" height="270" rx="6" fill="#fff" stroke="#d8232a" stroke-width="4"/>
+        <rect x="455" y="130" width="360" height="46" fill="#d8232a"/>
+        <text x="635" y="160" text-anchor="middle" fill="#fff" font-size="17" font-weight="700">TRƯỜNG ĐẠI HỌC KIẾN TRÚC ĐÀ NẴNG</text>
+        <text x="635" y="198" text-anchor="middle" fill="#d8232a" font-size="20" font-weight="800">KIẾN TẠO KHÔNG GIAN</text>
+        <text x="635" y="221" text-anchor="middle" fill="#a3151b" font-size="20" font-weight="800">KIẾN TẠO TƯƠNG LAI</text>
+        <g stroke="#f0b9bb" stroke-width="2" fill="none" opacity=".8">
+          <path d="M480 400V300h40v100M530 400V270h50v130M590 400V310h36v90M700 400V280h44v120M752 400V305h40v95"/>
+        </g>
+        <text x="635" y="122" text-anchor="middle" font-size="12" fill="#7a6a6c">Backdrop 3.6 m × 2.7 m</text>
+      </g>
+
+      <!-- Softbox lights -->
+      <g id="lights">
+        <g transform="translate(395,150)"><line x1="0" y1="20" x2="0" y2="250" stroke="#555" stroke-width="4"/><rect x="-22" y="-20" width="44" height="50" rx="5" fill="#333"/><rect x="-17" y="-15" width="34" height="40" fill="#fff6d8"/></g>
+        <circle cx="395" cy="155" r="70" fill="url(#glow)" opacity=".5"/>
+      </g>
+
+      <!-- FOV cone -->
+      <path id="fov" d="M193 122 L470 170 L470 400 Z" fill="#2f7de1" opacity=".10"/>
+      <path d="M193 122 L470 170 M193 122 L470 400" stroke="#2f7de1" stroke-width="1.5" stroke-dasharray="6 5" fill="none"/>
+
+      <!-- Kiosk -->
+      <g id="kiosk">
+        <ellipse cx="170" cy="408" rx="78" ry="12" fill="#ffd27a" opacity=".55"/>
+        <rect x="100" y="388" width="140" height="20" rx="9" fill="#d8232a"/>
+        <rect x="100" y="388" width="140" height="5" rx="2" fill="#f2b84b"/>
+        <rect x="138" y="262" width="64" height="130" fill="url(#pillar)" stroke="#f2b84b" stroke-width="2"/>
+        <path d="M138 392V340l64 -30v82z" fill="#d8232a"/>
+        <text x="170" y="282" text-anchor="middle" font-size="9" font-weight="800" fill="#d8232a">CHECK-IN</text>
+        <text x="170" y="294" text-anchor="middle" font-size="6.5" font-weight="700" fill="#d8232a">NHẬN ẢNH KỶ NIỆM</text>
+        <!-- mascot body -->
+        <path d="M112 150c-8 40-4 95 10 118h96c14-23 18-78 10-118z" fill="#d8232a"/>
+        <circle cx="170" cy="128" r="50" fill="#e0262d"/>
+        <!-- headphones -->
+        <path d="M122 118a48 48 0 0 1 96 0" fill="none" stroke="#2f7de1" stroke-width="9"/>
+        <rect x="108" y="112" width="20" height="32" rx="9" fill="#2f7de1"/><rect x="212" y="112" width="20" height="32" rx="9" fill="#2f7de1"/>
+        <rect x="111" y="118" width="8" height="20" rx="4" fill="#f2b84b"/><rect x="221" y="118" width="8" height="20" rx="4" fill="#f2b84b"/>
+        <path d="M226 144q10 22-14 26" stroke="#333" stroke-width="3" fill="none"/>
+        <!-- camera -->
+        <circle cx="170" cy="100" r="7" fill="#222"/><circle cx="170" cy="100" r="3" fill="#4af"/>
+        <circle id="camled" cx="184" cy="98" r="2.5" fill="#3c3"/>
+        <!-- face -->
+        <circle cx="153" cy="130" r="13" fill="#fff"/><circle cx="187" cy="130" r="13" fill="#fff"/>
+        <circle cx="155" cy="131" r="8" fill="#222"/><circle cx="189" cy="131" r="8" fill="#222"/>
+        <circle cx="158" cy="127" r="3" fill="#fff"/><circle cx="192" cy="127" r="3" fill="#fff"/>
+        <path d="M162 148q8 9 16 0z" fill="#7a0d12"/>
+        <circle cx="138" cy="146" r="6" fill="#ff8a8f"/><circle cx="202" cy="146" r="6" fill="#ff8a8f"/>
+        <!-- screen -->
+        <rect x="128" y="168" width="84" height="104" rx="8" fill="#f2b84b"/>
+        <rect x="132" y="172" width="76" height="96" rx="5" fill="#fff"/>
+        <g id="kscreen"></g>
+        <!-- hands -->
+        <circle cx="118" cy="176" r="12" fill="#fff"/><circle cx="222" cy="176" r="12" fill="#fff"/>
+        <circle cx="126" cy="268" r="11" fill="#fff"/><circle cx="214" cy="268" r="11" fill="#fff"/>
+      </g>
+
+      <!-- Operator person touching screen (step 1) -->
+      <g id="toucher" opacity="0">
+        <g transform="translate(262,400)">
+          <rect x="-16" y="-108" width="32" height="64" rx="12" fill="#3a6fb5"/>
+          <rect x="-13" y="-48" width="11" height="48" rx="5" fill="#2a2f45"/><rect x="2" y="-48" width="11" height="48" rx="5" fill="#2a2f45"/>
+          <circle cx="0" cy="-128" r="17" fill="#f2c9a5"/><path d="M-17 -132a17 17 0 0 1 34 0q-17-10-34 0z" fill="#2a1a1c"/>
+          <path d="M-12 -95L-52 -120" stroke="#3a6fb5" stroke-width="10" stroke-linecap="round"/><circle cx="-54" cy="-121" r="6" fill="#f2c9a5"/>
+        </g>
+      </g>
+
+      <!-- Group posing -->
+      <g id="group">
+        <!-- P1 -->
+        <g transform="translate(540,400)">
+          <rect x="-17" y="-112" width="34" height="66" rx="13" fill="#f2b84b"/>
+          <rect x="-14" y="-50" width="12" height="50" rx="5" fill="#34405e"/><rect x="2" y="-50" width="12" height="50" rx="5" fill="#34405e"/>
+          <circle cx="0" cy="-132" r="18" fill="#f2c9a5"/><path d="M-18 -134a18 18 0 0 1 36 0q-4-12-18-10t-18 10z" fill="#2a1a1c"/>
+          <path d="M-5 -127q5 5 10 0" stroke="#7a0d12" stroke-width="2" fill="none"/>
+          <g class="arm"><path d="M-14 -100L-40 -140" stroke="#f2b84b" stroke-width="10" stroke-linecap="round"/><circle cx="-41" cy="-143" r="6" fill="#f2c9a5"/><path d="M-43 -148l-3-10M-39 -148l3-10" stroke="#f2c9a5" stroke-width="3" stroke-linecap="round"/></g>
+          <path d="M14 -100L30 -70" stroke="#f2b84b" stroke-width="10" stroke-linecap="round"/>
+        </g>
+        <!-- P2 -->
+        <g transform="translate(620,400)">
+          <path d="M-20 -46l6-70h28l6 70z" fill="#d8232a"/>
+          <rect x="-12" y="-48" width="10" height="48" rx="5" fill="#f2c9a5"/><rect x="2" y="-48" width="10" height="48" rx="5" fill="#f2c9a5"/>
+          <circle cx="0" cy="-136" r="18" fill="#f7d3b3"/><path d="M-19 -130a19 19 0 0 1 38 0v26q-6-30-19-30t-19 30z" fill="#4a2a1c"/>
+          <path d="M-5 -131q5 5 10 0" stroke="#7a0d12" stroke-width="2" fill="none"/>
+          <g class="arm"><path d="M-12 -104q-22-20-6-46" stroke="#d8232a" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M12 -104q22-20 6-46" stroke="#d8232a" stroke-width="9" stroke-linecap="round" fill="none"/>
+          <path d="M0 -158c-6-10-18-2-10 6l10 9 10-9c8-8-4-16-10-6z" fill="#ff5a63"/></g>
+        </g>
+        <!-- P3 -->
+        <g transform="translate(700,400)">
+          <rect x="-18" y="-118" width="36" height="70" rx="13" fill="#2f7de1"/>
+          <rect x="-14" y="-52" width="12" height="52" rx="5" fill="#222"/><rect x="2" y="-52" width="12" height="52" rx="5" fill="#222"/>
+          <circle cx="0" cy="-139" r="18" fill="#e8b98f"/><path d="M-18 -142a18 18 0 0 1 36 0q-18-12-36 0z" fill="#111"/>
+          <path d="M-5 -134q5 5 10 0" stroke="#7a0d12" stroke-width="2" fill="none"/>
+          <path d="M-15 -104L-32 -74" stroke="#2f7de1" stroke-width="10" stroke-linecap="round"/>
+          <g class="arm"><path d="M15 -104L42 -142" stroke="#2f7de1" stroke-width="10" stroke-linecap="round"/><circle cx="43" cy="-145" r="6" fill="#e8b98f"/></g>
+        </g>
+      </g>
+
+      <!-- Floor mark -->
+      <rect x="520" y="404" width="200" height="6" rx="3" fill="#d8232a"/>
+      <text x="620" y="426" text-anchor="middle" font-size="12" fill="#a3151b" font-weight="700">Vạch đứng chụp</text>
+
+      <!-- dimension -->
+      <g stroke="#555" stroke-width="1.2" fill="none"><path d="M170 445H620M170 438v14M620 438v14"/></g>
+      <text x="395" y="462" text-anchor="middle" font-size="13" fill="#333" font-weight="600">1.8 – 2.2 m (2–4 người) · lùi 2.5 m cho nhóm 5–6 người</text>
+      <g stroke="#555" stroke-width="1.2" fill="none"><path d="M60 100V400M53 100h14M53 400h14"/></g>
+      <text x="48" y="255" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 48 255)">Camera cao ≈ 1.65 m</text>
+
+      <!-- result card -->
+      <g id="result" opacity="0" transform="translate(800,250)">
+        <rect x="-48" y="-80" width="96" height="150" rx="14" fill="#222"/>
+        <rect x="-42" y="-70" width="84" height="128" rx="6" fill="#fff"/>
+        <rect x="-36" y="-64" width="72" height="80" fill="#ffe3e4" stroke="#d8232a" stroke-width="3"/>
+        <circle cx="-18" cy="-30" r="7" fill="#f2b84b"/><circle cx="0" cy="-34" r="7" fill="#d8232a"/><circle cx="18" cy="-30" r="7" fill="#2f7de1"/>
+        <rect x="-27" y="-22" width="18" height="30" rx="6" fill="#f2b84b"/><rect x="-9" y="-26" width="18" height="34" rx="6" fill="#d8232a"/><rect x="9" y="-22" width="18" height="30" rx="6" fill="#2f7de1"/>
+        <text x="0" y="32" text-anchor="middle" font-size="8" font-weight="700" fill="#d8232a">DAU · KỶ NIỆM</text>
+        <text x="0" y="48" text-anchor="middle" font-size="8" fill="#555">Ảnh đã về máy ✓</text>
+      </g>
+
+      <!-- flash -->
+      <rect id="flash" width="900" height="470" fill="#fff" opacity="0" pointer-events="none"/>
+      <text id="big" x="395" y="80" text-anchor="middle" font-size="60" font-weight="800" fill="#d8232a"></text>
+    </svg>
+
+    <div class="bar"><button class="btn" id="play">⏸ Tạm dừng</button><span class="cap" id="cap"></span></div>
+    <div class="steps" id="steps">
+      <button class="step"><b>Bước 1</b>Chạm màn hình để bắt đầu, chọn khung ảnh</button>
+      <button class="step"><b>Bước 2</b>Lùi về vạch đứng, tạo dáng, đếm ngược 3-2-1</button>
+      <button class="step"><b>Bước 3</b>Máy chụp (đèn flash), xem lại ảnh trên màn hình</button>
+      <button class="step"><b>Bước 4</b>Quét QR trên màn hình để nhận ảnh về điện thoại</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>2. Mặt bằng bố trí (nhìn từ trên xuống)</h2>
+    <svg viewBox="0 0 900 380" role="img" aria-label="Mặt bằng bố trí photobooth">
+      <rect width="900" height="380" fill="#faf7f5"/>
+      <g stroke="#ece3df" stroke-width="1">
+        <path d="M0 80H900M0 180H900M0 280H900M100 0V380M200 0V380M300 0V380M400 0V380M500 0V380M600 0V380M700 0V380M800 0V380"/>
+      </g>
+      <!-- backdrop -->
+      <rect x="720" y="20" width="14" height="340" fill="#d8232a"/>
+      <text x="760" y="195" font-size="13" font-weight="700" fill="#a3151b" transform="rotate(90 760 195)" text-anchor="middle">BACKDROP 3.6 m</text>
+      <!-- FOV -->
+      <path d="M260 190L720 40V340Z" fill="#2f7de1" opacity=".12"/>
+      <path d="M260 190L720 40M260 190L720 340" stroke="#2f7de1" stroke-dasharray="6 5" fill="none"/>
+      <!-- kiosk -->
+      <rect x="215" y="160" width="45" height="60" rx="10" fill="#d8232a"/><circle cx="258" cy="190" r="6" fill="#222"/>
+      <text x="237" y="245" text-anchor="middle" font-size="13" font-weight="700">KIOSK</text>
+      <!-- standing zone -->
+      <rect x="600" y="80" width="70" height="220" rx="10" fill="none" stroke="#d8232a" stroke-width="2" stroke-dasharray="8 5"/>
+      <circle cx="635" cy="130" r="20" fill="#f2b84b"/><circle cx="635" cy="190" r="20" fill="#d8232a"/><circle cx="635" cy="250" r="20" fill="#2f7de1"/>
+      <text x="635" y="70" text-anchor="middle" font-size="12" fill="#a3151b" font-weight="700">Vùng đứng chụp</text>
+      <!-- lights -->
+      <g fill="#333"><rect x="340" y="40" width="40" height="16" rx="3" transform="rotate(30 360 48)"/><rect x="340" y="324" width="40" height="16" rx="3" transform="rotate(-30 360 332)"/></g>
+      <text x="360" y="28" text-anchor="middle" font-size="12">Đèn softbox 45°</text><text x="360" y="366" text-anchor="middle" font-size="12">Đèn softbox 45°</text>
+      <!-- queue -->
+      <g fill="#b9aeb0"><circle cx="60" cy="300" r="14"/><circle cx="100" cy="320" r="14"/><circle cx="145" cy="300" r="14"/></g>
+      <path d="M160 285Q200 250 222 228" stroke="#555" stroke-width="2" fill="none" marker-end="url(#ar)"/>
+      <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#555"/></marker></defs>
+      <text x="100" y="350" text-anchor="middle" font-size="12" fill="#555">Hàng chờ (đứng lệch bên, không lọt khung)</text>
+      <path d="M690 320Q760 370 860 340" stroke="#555" stroke-width="2" fill="none" marker-end="url(#ar)"/>
+      <text x="840" y="325" text-anchor="middle" font-size="12" fill="#555">Lối ra</text>
+      <!-- dims -->
+      <g stroke="#333" stroke-width="1.2" fill="none"><path d="M260 120H635M260 113v14M635 113v14"/><path d="M655 310H720M655 303v14"/></g>
+      <text x="447" y="112" text-anchor="middle" font-size="13" font-weight="600">≈ 2.0 m</text>
+      <text x="688" y="330" text-anchor="middle" font-size="12" font-weight="600">0.6–0.8 m</text>
+    </svg>
+  </section>
+
+  <section class="card">
+    <h2>3. Thông số gợi ý</h2>
+    <table>
+      <tr><th>Hạng mục</th><th>Gợi ý</th></tr>
+      <tr><td>Diện tích tối thiểu</td><td>≈ 4 m × 4 m (kiosk + vùng chụp + backdrop), thêm 1.5 m cho hàng chờ</td></tr>
+      <tr><td>Khoảng cách kiosk → người</td><td>1.8–2.2 m cho 2–4 người; 2.5–3 m cho nhóm 5–6 người (tuỳ góc ống kính)</td></tr>
+      <tr><td>Người → backdrop</td><td>0.6–0.8 m để tránh đổ bóng lên backdrop</td></tr>
+      <tr><td>Camera</td><td>Đặt trên đầu mascot, cao ≈ 1.6–1.7 m, hơi chúc xuống 3–5°</td></tr>
+      <tr><td>Màn hình cảm ứng</td><td>Tâm màn hình cao ≈ 1.2–1.3 m, vừa tầm tay sinh viên</td></tr>
+      <tr><td>Ánh sáng</td><td>2 đèn softbox/LED hai bên chếch 45°, hoặc ring light quanh camera</td></tr>
+      <tr><td>Sàn</td><td>Dán vạch/sticker "Đứng tại đây" để khách tự vào đúng khung</td></tr>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>4. Prompt tạo ảnh phối cảnh thật (dán vào ChatGPT kèm ảnh kiosk)</h2>
+    <pre id="prompt">Dùng đúng thiết kế kiosk photobooth mascot trong ảnh đính kèm (giữ nguyên hình dáng, màu đỏ – vàng gold, tai nghe xanh, màn hình "CHẠM ĐỂ BẮT ĐẦU", thân trụ "CHECK-IN NHẬN ẢNH KỶ NIỆM"). Tạo ảnh phối cảnh 3D chân thực tại sảnh sự kiện Trường Đại học Kiến trúc Đà Nẵng: kiosk đặt bên trái khung hình, cách khoảng 2 m phía trước là nhóm 3 sinh viên Việt Nam đang đứng trên vạch sticker đỏ "Đứng tại đây", tươi cười tạo dáng (giơ tay chữ V, thả tim) nhìn vào camera trên đầu mascot. Sau lưng nhóm là backdrop đỏ – trắng in chữ "KIẾN TẠO KHÔNG GIAN – KIẾN TẠO TƯƠNG LAI" và logo trường. Hai đèn softbox hai bên chếch 45°, màn hình kiosk đang hiện đếm ngược "3". Góc máy 3/4 từ phía sau bên cạnh kiosk, thấy cả kiosk lẫn nhóm người, ánh sáng sự kiện ấm, nền sạch, tỉ lệ 16:9, chất lượng cao.</pre>
+    <button class="btn" id="copy">Sao chép prompt</button>
+  </section>
+</main>
+
+<script>
+const NS='http://www.w3.org/2000/svg';
+const $=id=>document.getElementById(id);
+const ks=$('kscreen'), big=$('big'), flash=$('flash'), cap=$('cap');
+const stepEls=[...document.querySelectorAll('.step')];
+function screen(html){ks.innerHTML=html}
+const S={
+  idle:`<text x="170" y="196" text-anchor="middle" font-size="6" font-weight="700" fill="#d8232a">ĐH KIẾN TRÚC ĐÀ NẴNG</text>
+        <text x="170" y="220" text-anchor="middle" font-size="9" font-weight="800" fill="#d8232a">CHẠM ĐỂ</text>
+        <text x="170" y="232" text-anchor="middle" font-size="9" font-weight="800" fill="#d8232a">BẮT ĐẦU ♡</text>
+        <circle cx="170" cy="250" r="9" fill="#d8232a"/><rect x="165" y="246" width="10" height="8" rx="2" fill="#fff"/>`,
+  count:n=>`<rect x="132" y="172" width="76" height="96" rx="5" fill="#2a1a1c"/><text x="170" y="240" text-anchor="middle" font-size="54" font-weight="800" fill="#fff">${n}</text>`,
+  review:`<rect x="138" y="178" width="64" height="66" fill="#ffe3e4" stroke="#d8232a" stroke-width="2"/>
+        <circle cx="154" cy="205" r="6" fill="#f2b84b"/><circle cx="170" cy="202" r="6" fill="#d8232a"/><circle cx="186" cy="205" r="6" fill="#2f7de1"/>
+        <rect x="147" y="212" width="14" height="26" rx="5" fill="#f2b84b"/><rect x="163" y="209" width="14" height="29" rx="5" fill="#d8232a"/><rect x="179" y="212" width="14" height="26" rx="5" fill="#2f7de1"/>
+        <text x="170" y="260" text-anchor="middle" font-size="8" font-weight="700" fill="#d8232a">Đẹp quá! ✓</text>`,
+  qr:(()=>{let s='<text x="170" y="186" text-anchor="middle" font-size="7" font-weight="700" fill="#d8232a">QUÉT QR NHẬN ẢNH</text>';
+        for(let r=0;r<9;r++)for(let c=0;c<9;c++){const corner=(r<3&&c<3)||(r<3&&c>5)||(r>5&&c<3);if(corner||((r*7+c*13+r*c)%3==0))s+=`<rect x="${143+c*6}" y="${194+r*6}" width="6" height="6" fill="#222"/>`}
+        return s+'<text x="170" y="262" text-anchor="middle" font-size="6" fill="#555">Ảnh về điện thoại trong 5s</text>'})()
+};
+function show(id,v){$(id).style.transition='opacity .4s';$(id).setAttribute('opacity',v);$(id).style.opacity=v}
+function pose(on){document.querySelectorAll('#group .arm').forEach(a=>{a.style.transition='opacity .4s';a.style.opacity=on?1:0})}
+function doFlash(){flash.style.transition='none';flash.style.opacity=.95;requestAnimationFrame(()=>requestAnimationFrame(()=>{flash.style.transition='opacity .6s';flash.style.opacity=0}))}
+
+// timeline: [duration ms, stepIndex, fn]
+const TL=[
+ [2600,0,()=>{screen(S.idle);big.textContent='';show('toucher',1);show('result',0);pose(false);cap.textContent='Khách chạm màn hình để bắt đầu'}],
+ [1500,1,()=>{show('toucher',0);pose(true);cap.textContent='Cả nhóm vào vạch đứng và tạo dáng'}],
+ [900,1,()=>{screen(S.count(3));big.textContent='3';cap.textContent='Đếm ngược…'}],
+ [900,1,()=>{screen(S.count(2));big.textContent='2'}],
+ [900,1,()=>{screen(S.count(1));big.textContent='1'}],
+ [2400,2,()=>{big.textContent='📸';doFlash();screen(S.review);cap.textContent='Tách! Xem lại ảnh trên màn hình'}],
+ [3200,3,()=>{big.textContent='';screen(S.qr);show('result',1);cap.textContent='Quét QR – ảnh có khung trường về điện thoại'}],
+];
+let i=0,timer=null,playing=true;
+function run(){const [d,s,f]=TL[i];f();stepEls.forEach((e,k)=>e.classList.toggle('on',k===s));
+  if(playing)timer=setTimeout(()=>{i=(i+1)%TL.length;run()},d)}
+$('play').onclick=()=>{playing=!playing;$('play').textContent=playing?'⏸ Tạm dừng':'▶ Chạy tiếp';clearTimeout(timer);if(playing)run()};
+const firstOf=[0,1,5,6];
+stepEls.forEach((e,k)=>e.onclick=()=>{clearTimeout(timer);i=firstOf[k];run()});
+$('copy').onclick=()=>{navigator.clipboard.writeText($('prompt').textContent).then(()=>{$('copy').textContent='Đã sao chép ✓'})};
+run();
+</script>
+</body>
+</html>
