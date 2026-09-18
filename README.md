@@ -28,7 +28,9 @@ Mô phỏng 3D gian photobooth **"Lưu Dấu Kỷ Niệm"** phục vụ triển 
 
 Dự án dựng lại toàn bộ gian hàng và **diễn lại một lượt khách vào chụp ảnh**:
 từ lúc chạm màn hình kiosk, lùi về vạch tạo dáng, đếm ngược, đèn flash sáng,
-quét QR nhận ảnh, cho tới khi máy in nhả tờ ảnh kỷ niệm và khách cầm ra về.
+cho tới khi quét mã QR để **tải ảnh về điện thoại**.
+
+> 📱 Photobooth này **không in ảnh**. Khách chụp xong quét QR và nhận ảnh số về máy.
 
 > 🎯 **Mục đích:** trình bày ý tưởng cho ban tổ chức duyệt bố cục, kích thước
 > và màu sắc **trước khi thi công thật**.
@@ -39,8 +41,8 @@ quét QR nhận ảnh, cho tới khi máy in nhả tờ ảnh kỷ niệm và kh
 <tr>
 <td width="25%" align="center"><h3>🏛️</h3><b>Gian 6 × 5 m</b><br><sub>Banner 20 năm và logo chính thức của trường</sub></td>
 <td width="25%" align="center"><h3>🤖</h3><b>Kiosk mascot</b><br><sub>Theo đúng thiết kế đã duyệt</sub></td>
-<td width="25%" align="center"><h3>🖨️</h3><b>Máy in ảnh</b><br><sub>Nhả tờ ảnh 10 × 15 cm</sub></td>
-<td width="25%" align="center"><h3>🎬</h3><b>Hoạt cảnh 6 bước</b><br><sub>Tự chạy, xem được cách vận hành</sub></td>
+<td width="25%" align="center"><h3>📱</h3><b>Nhận ảnh qua QR</b><br><sub>Quét mã, tải ảnh về điện thoại</sub></td>
+<td width="25%" align="center"><h3>🎬</h3><b>Hoạt cảnh 4 bước</b><br><sub>Tự chạy, xem được cách vận hành</sub></td>
 </tr>
 </table>
 
@@ -52,7 +54,7 @@ Mở trực tiếp bằng trình duyệt — **không cần cài đặt bất c�
 
 | | Bản | File | Nội dung |
 |:--:|---|---|---|
-| ⭐ | **Bản chính** | [`gian-photobooth-20-nam-3d.html`](gian-photobooth-20-nam-3d.html) | Gian 3D đầy đủ: backdrop, tường trưng bày, máy in, hoạt cảnh 6 bước |
+| ⭐ | **Bản chính** | [`gian-photobooth-20-nam-3d.html`](gian-photobooth-20-nam-3d.html) | Gian 3D đầy đủ: backdrop banner 20 năm, tường trưng bày, hoạt cảnh 4 bước |
 | | Rút gọn | [`mo-phong-photobooth-3d.html`](mo-phong-photobooth-3d.html) | Chỉ cảnh chụp 3D, chưa có gian hàng |
 | | Sơ đồ | [`mo-phong-photobooth.html`](mo-phong-photobooth.html) | Bản vẽ 2D: mặt cắt ngang + mặt bằng bố trí |
 
@@ -75,33 +77,28 @@ Mở trực tiếp bằng trình duyệt — **không cần cài đặt bất c�
 </tr>
 <tr>
 <td width="50%"><img src="docs/04-tu-camera.jpg" alt="Từ camera kiosk"><br><div align="center"><b>Góc nhìn từ camera kiosk</b><br><sub>Đúng khung hình máy sẽ chụp được</sub></div></td>
-<td width="50%"><img src="docs/05-may-in.jpg" alt="Máy in ảnh"><br><div align="center"><b>Máy in nhả tờ ảnh</b><br><sub>Ảnh trườn ra khay, có khung 20 năm</sub></div></td>
-</tr>
-<tr>
-<td width="50%" colspan="2" align="center"><img src="docs/07-cam-anh.jpg" alt="Khách cầm ảnh ra về" width="50%"><br><b>Khách cầm ảnh ra về</b><br><sub>Bước cuối của một lượt chụp</sub></td>
+<td width="50%"><img src="docs/05-quet-qr.jpg" alt="Quét QR nhận ảnh"><br><div align="center"><b>Quét QR nhận ảnh</b><br><sub>Màn hình kiosk hiện mã QR để tải ảnh về điện thoại</sub></div></td>
 </tr>
 </table>
 
 ---
 
-## 🎬 Quy trình vận hành — 6 bước
+## 🎬 Quy trình vận hành — 4 bước
 
-Hoạt cảnh tự chạy lặp lại, mỗi vòng khoảng **22 giây**.
+Hoạt cảnh tự chạy lặp lại, mỗi vòng khoảng **16 giây**.
 
 ```
-  ①          ②          ③          ④          ⑤          ⑥
-CHẠM  ──▶  TẠO DÁNG ──▶  CHỤP  ──▶ QUÉT QR ──▶ IN ẢNH ──▶ RA VỀ
-màn hình   3 · 2 · 1    📸 flash   📱 điện thoại  🖨️ 12 giây   🎟️ cầm ảnh
+   ①            ②            ③            ④
+ CHẠM   ──▶   TẠO DÁNG  ──▶   CHỤP   ──▶  QUÉT QR
+màn hình      3 · 2 · 1     📸 flash    📱 tải ảnh về máy
 ```
 
 | Bước | Diễn biến | Màn hình kiosk |
 |:--:|---|---|
-| **1** | Khách chạm màn hình để bắt đầu, chọn khung ảnh | `CHẠM ĐỂ BẮT ĐẦU ♡` |
+| **1** | Khách chạm màn hình để bắt đầu, chọn khung ảnh | Logo trường + `CHẠM ĐỂ BẮT ĐẦU ♡` |
 | **2** | Cả nhóm lùi về vạch "Đứng tại đây", tạo dáng | Đếm ngược `3 · 2 · 1` |
 | **3** | Đèn flash sáng, máy chụp, khách xem lại ảnh | Ảnh vừa chụp + `Đẹp quá ✓` |
-| **4** | Khách quét mã QR để nhận ảnh về điện thoại | Mã QR |
-| **5** | Máy in nhả tờ ảnh ra khay (~12 giây/tấm) | `ĐANG IN ẢNH` + thanh tiến trình |
-| **6** | Khách cầm tờ ảnh kỷ niệm ra về | Quay lại màn hình chờ |
+| **4** | Cả nhóm lại gần quét mã QR, tải ảnh về điện thoại | Mã QR `QUÉT QR NHẬN ẢNH` |
 
 ---
 
@@ -127,7 +124,7 @@ màn hình   3 · 2 · 1    📸 flash   📱 điện thoại  🖨️ 12 giây 
 | **Vùng chụp** | Hiện hình nón thể hiện khung hình camera bắt được |
 | **Kích thước** | Hiện các đường kích thước gian hàng |
 
-### Thanh 5 bước phía trên
+### Thanh 4 bước phía trên
 
 Bấm vào bước nào để **nhảy thẳng tới bước đó**, không phải chờ hết vòng.
 
@@ -144,7 +141,7 @@ Bấm vào bước nào để **nhảy thẳng tới bước đó**, không ph�
 | **Camera trên đầu mascot** | cao ≈ 1,9 m, chúc xuống 3–5° |
 | **Màn hình cảm ứng** | tâm màn hình cao ≈ 1,3 m |
 | **Ánh sáng** | 2 đèn LED đứng hai bên kiosk + 4 đèn rọi trên xà |
-| **Máy in ảnh** | Bục cao 0,85 m bên trái kiosk · khổ ảnh 10 × 15 cm |
+| **Nhận ảnh** | Quét mã QR trên màn hình kiosk, ảnh số tải về điện thoại — không in |
 | **Lối vào** | Bên phải, cọc dây chắn cho hàng chờ |
 
 ---
@@ -158,7 +155,7 @@ Bấm vào bước nào để **nhảy thẳng tới bước đó**, không ph�
     20 NĂM          │  └──────────────────────────────────────┘  │   + bục mô hình
  2006 → 2026        │             👤 👤 👤  ← vạch đứng          │
                     │                                            │
-                    │   🖨 máy in      🤖 KIOSK      💡 đèn      │
+                    │      💡 đèn      🤖 KIOSK      💡 đèn      │
                     │                                            │
    số "20" 3D       └──── BẢNG HIỆU MẶT TIỀN ─────  🚧 hàng chờ ─┘
 ```
@@ -193,7 +190,7 @@ photobooth-studio/
 | [Three.js](https://threejs.org/) r128 | Dựng cảnh 3D, đổ bóng, ánh sáng (tải từ CDN jsDelivr) |
 | `OrbitControls` | Xoay / zoom bằng chuột |
 | Hình khối cơ bản | Toàn bộ vật thể dựng bằng box, cylinder, sphere — **không dùng file model ngoài** |
-| HTML Canvas | Chữ trên backdrop, bảng hiệu, màn hình kiosk, tờ ảnh in đều vẽ bằng Canvas rồi đắp lên vật thể |
+| HTML Canvas | Chữ trên backdrop, bảng hiệu, màn hình kiosk đều vẽ bằng Canvas rồi đắp lên vật thể |
 
 > ✏️ Nhờ vậy, **sửa nội dung chữ chỉ cần sửa code, không cần phần mềm đồ hoạ.**
 
@@ -219,7 +216,7 @@ Các thông tin dưới đây là **ước lượng**, cần đối chiếu th�
 
 - [ ] **Kích thước gian 6 × 5 m** — cần đo theo mặt bằng thật của khu triển lãm
 - [ ] **Khoảng cách kiosk → người 2,0 m** — phụ thuộc tiêu cự ống kính máy ảnh sẽ dùng
-- [ ] **Thời gian in 12 giây/tấm** — theo máy in nhiệt phổ thông, cần kiểm tra theo máy thực tế
+- [ ] **Đường truyền mạng tại gian** — quét QR tải ảnh cần wifi/4G ổn định
 - [ ] **Ảnh tư liệu trên tường hành trình** — hiện là ô trống, chờ ảnh thật từ nhà trường
 
 ---
@@ -231,7 +228,7 @@ Gian hàng dùng đúng bộ nhận diện kỷ niệm 20 năm của trường, 
 | Thành phần | Vị trí trong gian |
 |---|---|
 | **Banner "Chúc mừng kỷ niệm 20 năm thành lập trường"** | In kín tường sau, làm backdrop chụp ảnh |
-| **Logo trường** | Hai đầu bảng hiệu mặt tiền · màn hình chờ kiosk · tường hành trình · tờ ảnh in |
+| **Logo trường** | Hai đầu bảng hiệu mặt tiền · màn hình chờ kiosk · tường hành trình · backdrop |
 | **6 mốc hành trình** | 2006 Thành lập · 2010 Khẳng định · 2015 Bứt phá · 2020 Đổi mới · 2023 Vươn xa · 2026 Tương lai |
 | **Khẩu hiệu** | Kiến tạo giá trị – Dựng xây tương lai |
 
